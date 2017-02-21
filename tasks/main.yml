@@ -30,7 +30,7 @@
 - name: Copy config file
   sudo: yes
   template:
-    src: templates/conf.j2
+    src: conf.j2
     dest: /etc/influxdb/influxdb.conf
     owner: root
     group: root
