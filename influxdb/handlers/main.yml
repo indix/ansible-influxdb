@@ -1,7 +1,0 @@
----
-
-- name: restart influxdb
-  sudo: yes
-  service:
-    name: influxdb
-    state: restarted
