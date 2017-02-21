@@ -1,0 +1,5 @@
+---
+influxdb_ver: "0.8.0"
+influxdb_dl_url: "http://get.influxdb.org.s3.amazonaws.com/influxdb_0.8.0_amd64.deb"
+influxdb_sha_sum: "356e5ddca940e1571fb8383f8e421e7a1722c7ccdb04c5bd2278776d0f4dbafc"
+influxdb_pkg: "/usr/local/src/influxdb_0.8.2_amd64.deb"

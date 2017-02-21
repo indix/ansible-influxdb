@@ -1,0 +1,46 @@
+---
+
+- name: Add the apt key for influxdb
+  sudo: yes
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+
+
+- name: Add influxdb repository
+  sudo: yes
+  apt_repository:
+    repo: "deb https://repos.influxdata.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+
+# - name: Create influxdb apps directory
+#   sudo: yes
+#   file:
+#     path: "{{influxdb_apps_dir}}"
+#     state: directory
+#     mode: 0755
+#     owner: "{{ansible_ssh_user}}"
+#     group: "{{ansible_ssh_user}}"
+#
+# - name: Download version
+#   get_url:
+#     url: "{{influxdb_dl_url}}"
+#     dest: "{{influxdb_pkg}}"
+#     sha256sum: "{{influxdb_sha_sum}}"
+#   tags:
+#     - influxdb
+
+# - name: Install package
+#   command: dpkg --skip-same-version -i {{influxdb_pkg}}
+#   register: dpkg_result
+#   changed_when: "dpkg_result.stdout.startswith('Selecting')"
+#   tags:
+#     - influxdb
+
+- name: Install influxdb
+  sudo: yes
+  apt:
+    name: influxdb
+    update_cache: yes
+    cache_valid_time: 3600
