@@ -2,4 +2,4 @@
 influxdb_ver: "1.2.0"
 influxdb_apps_dir: "/apps/influxdb"
 influxdb_dl_url: "https://dl.influxdata.com/influxdb/releases/influxdb_{{influxdb_ver}}_amd64.deb"
-influxdb_md5_sum: "md5:f79959802930c7e9d6e81ffd366c0629"
+influxdb_md5_sum: "f79959802930c7e9d6e81ffd366c0629"

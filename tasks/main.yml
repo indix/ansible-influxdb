@@ -9,11 +9,31 @@
     owner: root
     group: root
 
+- name: Get md5sum of file if it exists
+  command: "/usr/bin/md5sum influxdb_{{influxdb_ver}}_amd64.deb | awk '{print $1}'"
+  args:
+    chdir: "{{influxdb_apps_dir}}/"
+  register: md5status
+  changed_when: False
+  ignore_errors: True
+  tags:
+    - influxdb
+
+- name: Delete incorrect deb file
+  file:
+    path: "{{influxdb_apps_dir}}/influxdb_{{influxdb_ver}}_amd64.deb"
+    state: absent
+  when: md5status and md5status.stdout != influxdb_md5_sum
+  changed_when: False
+  tags:
+    - influxdb
+
 - name: Download version
   sudo: yes
   command: "wget {{influxdb_dl_url}}"
   args:
     chdir: "{{influxdb_apps_dir}}/"
+  when: not md5status or md5status.stdout != influxdb_md5_sum
   changed_when: False
   tags:
     - influxdb
