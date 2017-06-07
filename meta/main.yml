@@ -6,4 +6,18 @@ galaxy_info:
   min_ansible_version: 1.9
   platforms:
    - name: Ubuntu
-dependencies: []
+dependencies:
+
+  - role: ansible-monit
+    sudo: yes
+    monit_services:
+      - name: influxdb
+        type: process
+        target: "{{influx_pid_file}}"
+        start: "/etc/init.d/influxdb start"
+        stop: "/etc/init.d/influxdb stop"
+      - name: grafana
+        type: process
+        target: "{{grafana_pid_file}}"
+        start: "/etc/init.d/grafana-server start"
+        stop: "/etc/init.d/grafana-server stop"
