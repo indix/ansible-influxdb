@@ -21,3 +21,6 @@ dependencies:
         target: "{{grafana_pid_file}}"
         start: "/etc/init.d/grafana-server start"
         stop: "/etc/init.d/grafana-server stop"
+
+  - role: ansible-telegraf
+    sudo: yes
